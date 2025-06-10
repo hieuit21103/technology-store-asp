@@ -1,6 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../assets/layout.css";
 import "../assets/home.css";
 
@@ -35,7 +33,7 @@ function Home() {
         <div className="hero-content text-center">
             <h1 className="hero-title">HIEU GAMING GEAR</h1>
             <p className="hero-slogan">Nâng tầm trải nghiệm gaming của bạn</p>
-            <a href="#" className="btn-shop-now">
+            <a href="/shop" className="btn-shop-now">
             <i className="fas fa-shopping-cart"></i> Mua ngay
             </a>
         </div>

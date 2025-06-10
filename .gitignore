@@ -1,9 +1,11 @@
 bin/
 obj/
 # Ignore build output directories
-wwwroot/
+wwwroot/*
+
 # Ignore user-specific settings and preferences
 [appname].User.Preferences
+
 # Ignore appsettings files
 appsettings.Development.json
-
+appsettings.json
