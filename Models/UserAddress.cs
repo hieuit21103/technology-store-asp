@@ -10,8 +10,8 @@ namespace technology_store_asp.Models
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; } = string.Empty;
 
         [Required, MaxLength(255)]
         public string FullName { get; set; } = string.Empty;
@@ -33,7 +33,7 @@ namespace technology_store_asp.Models
 
         public bool IsDefault { get; set; } = false;
 
-        public User User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
     }
 
 }

@@ -10,8 +10,8 @@ namespace technology_store_asp.Models
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; } = string.Empty;
 
         [Required, MaxLength(50)]
         public string Status { get; set; } = string.Empty;
@@ -26,7 +26,7 @@ namespace technology_store_asp.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public User User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
         public Payment? Payment { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }

@@ -1,6 +1,5 @@
-import React from "react";
-import "../assets/layout.css";
-import "../assets/home.css";
+import "../assets/css/home.css";
+import "../assets/css/layout.css";
 
 function Home() {
   return (
@@ -115,7 +114,6 @@ function Home() {
         </div>
         </div>
     </section>
-
     <footer>
         <div className="container">
         <div className="row g-4">

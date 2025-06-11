@@ -10,8 +10,8 @@ namespace technology_store_asp.Models
         [Key]
         public Guid Id { get; set; }
 
-        [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; } = string.Empty;
 
         [ForeignKey("Product")]
         public Guid ProductId { get; set; }
@@ -22,7 +22,7 @@ namespace technology_store_asp.Models
         public string? Comment { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public User User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
         public Product Product { get; set; } = null!;
     }
 

@@ -1,11 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using technology_store_asp.Models;
 
 namespace technology_store_asp.Models
 {
-    [Table("CartItems")]
-    public class CartItem
+    public class UserProfile
     {
         [Key]
         public Guid Id { get; set; }
@@ -13,13 +11,12 @@ namespace technology_store_asp.Models
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; } = string.Empty;
 
-        [ForeignKey("ProductVariant")]
-        public Guid ProductVariantId { get; set; }
+        [Required, MaxLength(100)]
+        public string FullName { get; set; } = string.Empty;
 
-        public int Quantity { get; set; }
-        public DateTime CreatedAt { get; set; }
+        [Required, MaxLength(20)]
+        public string? AvatarUrl { get; set; }
 
         public ApplicationUser User { get; set; } = null!;
-        public ProductVariant ProductVariant { get; set; } = null!;
     }
 }

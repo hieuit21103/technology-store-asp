@@ -1,6 +1,6 @@
 import React from "react";
-import "../assets/layout.css";
-import "../assets/shop.css";
+import "../assets/css/layout.css";
+import "../assets/css/shop.css";
 
 function Shop() {
     return (
@@ -172,7 +172,6 @@ function Shop() {
             </div>
             </div>
         </main>
-
         <footer>
             <div className="container">
             <div className="row g-4">

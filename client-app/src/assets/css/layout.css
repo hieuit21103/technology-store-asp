@@ -345,3 +345,8 @@ footer {
 .navbar-actions .action-item:hover {
   color: #ff4d4d;
 } 
+
+.to-share-icons {
+  display: flex;
+  font-size: 1.4rem;
+}
