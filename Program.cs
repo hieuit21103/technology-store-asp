@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using technology_store_asp.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

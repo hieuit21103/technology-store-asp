@@ -1,33 +1,32 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using technology_store_asp.Models;
 
 namespace technology_store_asp.Models
 {
-    [Table("users")]
+    [Table("Users")]
     public class User
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
+        [Required, MaxLength(255)]
+        public string Email { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
-        public string name { get; set; }
+        public string PasswordHash { get; set; } = string.Empty;
 
-        [Required]
-        [StringLength(100)]
-        public string password { get; set; }
+        [MaxLength(255)]
+        public string? FullName { get; set; }
 
-        [EmailAddress]
-        [StringLength(200)]
-        public string email { get; set; }
+        [MaxLength(20)]
+        public string? PhoneNumber { get; set; }
 
-        [StringLength(100)]
-        public string? remember_token { get; set; }
-
-        public DateTime email_verified_at { get; set; } = DateTime.MinValue;
-
+        public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        public ICollection<UserAddress> Addresses { get; set; } = new List<UserAddress>();
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }
