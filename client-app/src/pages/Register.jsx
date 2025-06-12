@@ -1,6 +1,7 @@
 import styles from "../assets/css/auth.module.css";
-import { useEffect, React } from "react";
+import React, { useEffect, useState } from "react";
 
+const API_URL = process.env.REACT_APP_API_URL
 function Register() {
     useEffect(() => {
         document.body.classList.add(`${styles["auth-body"]}`);
@@ -8,6 +9,51 @@ function Register() {
             document.body.classList.remove(`${styles["auth-body"]}`);
         };
     }, []);
+
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+        if (!username || !email || !password || !confirmPassword) {
+            setError("Vui lòng điền đầy đủ thông tin đăng ký.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError("Mật khẩu và xác nhận mật khẩu không khớp.");
+            return;
+        }
+
+        const response = await fetch(`${API_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, email, password }),
+        });
+
+        if(!response.ok) {
+            const text = await response.text();
+            setError(`Đăng ký không thành công: ${text}`);
+            return;
+        }
+
+        const result = await response.text();
+        setSuccess("Đăng ký thành công! Vui lòng đăng nhập.");
+        console.log("Registration successful:", result);
+
+        setTimeout(() => {
+            window.location.href = "/login";
+        }, 2000);
+    };
+
     return (
         <div className="container">
             <div className="row d-flex justify-content-center align-items-center">
@@ -27,13 +73,15 @@ function Register() {
                                 </div>
 
                                 <h3 className="mb-4 text-center">Đăng Ký</h3>
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className={styles["input-icon-wrapper"]}>
                                         <i className={`fas fa-user ${styles["input-icon"]}`}></i>
                                         <input
                                             type="text"
                                             className={`form-control ${styles["form-control"]}`}
                                             id="username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
                                             placeholder="Tên đăng nhập"
                                         />
                                     </div>
@@ -44,6 +92,8 @@ function Register() {
                                             type="email"
                                             className={`form-control ${styles["form-control"]}`}
                                             id="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             placeholder="Email"
                                         />
                                     </div>
@@ -54,6 +104,8 @@ function Register() {
                                             type="password"
                                             className={`form-control ${styles["form-control"]}`}
                                             id="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
                                             placeholder="Mật khẩu"
                                         />
                                     </div>
@@ -64,6 +116,8 @@ function Register() {
                                             type="password"
                                             className={`form-control ${styles["form-control"]}`}
                                             id="confirmPassword"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
                                             placeholder="Nhập lại mật khẩu"
                                         />
                                     </div>
@@ -71,6 +125,9 @@ function Register() {
                                     <button type="submit" className={`btn btn-red w-100 ${styles["btn-red"]}`}>
                                         <i className="fas fa-user-plus me-2"></i> Đăng Ký
                                     </button>
+
+                                    {error && <div className="alert alert-danger mt-3">{error}</div>}
+                                    {success && <div className="alert alert-success mt-3">{success}</div>}
                                 </form>
 
                                 <div className={styles["login-divider"]}>
@@ -91,7 +148,7 @@ function Register() {
 
                                 <p className={`text-center ${styles["register-text"]}`}>
                                     Đã có tài khoản?{" "}
-                                    <a href="#" className={styles["register-link"]}>
+                                    <a href="/login" className={styles["register-link"]}>
                                         Đăng nhập
                                     </a>
                                 </p>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Detail() {
+function Product() {
     return (
         <>
             <div className="container products-page py-5">
@@ -111,5 +111,5 @@ function Detail() {
     );
 }
 
-export default Detail;
+export default Product;
 

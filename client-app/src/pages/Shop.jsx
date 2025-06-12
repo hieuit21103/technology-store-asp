@@ -1,6 +1,7 @@
 import React from "react";
 import "../assets/css/layout.css";
 import "../assets/css/shop.css";
+import sample from "../assets/images/products/sample.jpg";
 
 function Shop() {
     return (
@@ -79,7 +80,7 @@ function Shop() {
                         </div>
                         <div className="col-lg-9">
                             <div className="products-header">
-                                <h2 className="section-title">Tất cả sản phẩm</h2>
+                                <h2>Tất cả sản phẩm</h2>
                                 <div className="products-tools">
                                     <div className="sort-by">
                                         <select className="form-select">
@@ -100,13 +101,13 @@ function Shop() {
                                 <div className="col-6 col-lg-4">
                                     <div className="product-card">
                                         <div className="product-badge">New</div>
-                                        <img src="{{ asset('images/product1.jpg') }}" alt="Bàn phím cơ" className="product-image" />
+                                        <img src={sample} alt="Bàn phím cơ" className="product-image" />
                                         <div className="product-info">
                                             <h3 className="product-name"><i className="fas fa-keyboard"></i> Bàn phím cơ Gaming RGB</h3>
                                             <p className="product-price">2.990.000đ</p>
                                             <div className="product-actions">
-                                                <button className="btn-add-cart"><i className="fas fa-shopping-cart"></i></button>
-                                                <button className="btn-favorite"><i className="far fa-heart"></i></button>
+                                                <a href="/cart" className="btn-add-cart"><i className="fas fa-shopping-cart"></i></a>
+                                                <a href="/product" className="btn-product"><i className="far fa-eye"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +115,7 @@ function Shop() {
                                 <div className="col-6 col-lg-4">
                                     <div className="product-card">
                                         <div className="product-badge sale">-20%</div>
-                                        <img src="{{ asset('images/product2.jpg') }}" alt="Chuột gaming" className="product-image" />
+                                        <img src={sample} alt="Chuột gaming" className="product-image" />
                                         <div className="product-info">
                                             <h3 className="product-name"><i className="fas fa-mouse"></i> Chuột Gaming Pro</h3>
                                             <p className="product-price">
@@ -122,8 +123,8 @@ function Shop() {
                                                 1.490.000đ
                                             </p>
                                             <div className="product-actions">
-                                                <button className="btn-add-cart"><i className="fas fa-shopping-cart"></i></button>
-                                                <button className="btn-favorite"><i className="far fa-heart"></i></button>
+                                                <a className="btn-add-cart"><i className="fas fa-shopping-cart"></i></a>
+                                                <a className="btn-product"><i className="far fa-eye"></i></a>
                                             </div>
                                         </div>
                                     </div>

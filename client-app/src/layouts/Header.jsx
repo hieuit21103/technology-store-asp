@@ -14,10 +14,10 @@ function Header() {
                 </div>
             </form>
             <div className="icons">
-                <a href="#" className="me-3">
+                <a href="/cart" className="me-3">
                 <i className="fas fa-shopping-cart"></i>
                 </a>
-                <a href="#">
+                <a href="/login" className="me-3">
                 <i className="fas fa-user"></i>
                 </a>
             </div>

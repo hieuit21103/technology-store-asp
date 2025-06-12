@@ -193,13 +193,15 @@
 }
 
 .btn-add-cart,
-.btn-favorite {
+.btn-product {
+  color: #000;
+  text-decoration: none;
   background: none;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 0.5rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.5s;
   flex: 1;
 }
 
@@ -209,7 +211,7 @@
   color: white;
 }
 
-.btn-favorite:hover {
+.btn-product:hover {
   background-color: #ff4d4d;
   border-color: #ff4d4d;
   color: white;

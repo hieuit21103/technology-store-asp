@@ -1,13 +1,61 @@
 import styles from "../assets/css/auth.module.css";
-import { useEffect, React } from "react";
+import React, { useEffect, useState } from "react";
+
+const API_URL = process.env.REACT_APP_API_URL
 
 function Login() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
     useEffect(() => {
         document.body.classList.add(`${styles["auth-body"]}`);
         return () => {
             document.body.classList.remove(`${styles["auth-body"]}`);
         };
     }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+
+
+        if (!username || !password) {
+            setError("Vui lòng điền đầy đủ thông tin đăng nhập.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    username, 
+                    password }),
+            });
+
+            if(!response.ok){
+                const text = await response.text();
+                setError(`Đăng nhập không thành công: ${text}`);
+                return;
+            }
+
+            const result = await response.text();
+            setSuccess("Đăng nhập thành công!");
+            console.log("Login successful:", result);
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 2000);
+        } catch (err) {
+            console.error("Login error:", err);
+            setError("Đăng nhập không thành công. Vui lòng thử lại.");
+        }
+    }
+
     return (
         <div className="container">
             <div className="row d-flex justify-content-center align-items-center">
@@ -27,14 +75,16 @@ function Login() {
                                 </div>
 
                                 <h3 className="mb-4 text-center">Đăng Nhập</h3>
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className={styles["input-icon-wrapper"]}>
-                                        <i className={`fas fa-envelope ${styles["input-icon"]}`}></i>
+                                        <i className={`fas fa-user ${styles["input-icon"]}`}></i>
                                         <input
-                                            type="email"
+                                            type="text"
                                             className={`form-control ${styles["form-control"]}`}
-                                            id="email"
-                                            placeholder="Email hoặc tên đăng nhập"
+                                            id="username"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            placeholder="Tài khoản"
                                         />
                                     </div>
 
@@ -44,6 +94,8 @@ function Login() {
                                             type="password"
                                             className={`form-control ${styles["form-control"]}`}
                                             id="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
                                             placeholder="Mật khẩu"
                                         />
                                     </div>
@@ -51,7 +103,7 @@ function Login() {
                                     <div className="d-flex justify-content-between mb-4">
                                         <div className="form-check">
                                             <input
-                                                className="form-check-input"
+                                                className="form-check-input border-dark bg-dark rounded-0"
                                                 type="checkbox"
                                                 id="rememberMe"
                                             />
@@ -67,6 +119,9 @@ function Login() {
                                     <button type="submit" className={`btn btn-red w-100 ${styles["btn-red"]}`}>
                                         <i className="fas fa-sign-in-alt me-2"></i> Đăng Nhập
                                     </button>
+
+                                    {error && <div className="alert alert-danger mt-3">{error}</div>}
+                                    {success && <div className="alert alert-success mt-3">{success}</div>}
                                 </form>
 
                                 <div className={styles["login-divider"]}>
@@ -87,7 +142,7 @@ function Login() {
 
                                 <p className={`text-center ${styles["register-text"]}`}>
                                     Chưa có tài khoản?{" "}
-                                    <a href="#" className={styles["register-link"]}>
+                                    <a href="/register" className={styles["register-link"]}>
                                         Đăng ký ngay
                                     </a>
                                 </p>

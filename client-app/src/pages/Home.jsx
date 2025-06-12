@@ -1,5 +1,6 @@
 import "../assets/css/home.css";
 import "../assets/css/layout.css";
+import sample from "../assets/images/products/sample.jpg";
 
 function Home() {
     return (
@@ -23,7 +24,7 @@ function Home() {
                     <div className="row g-4">
                         <div className="col-6 col-lg-3">
                             <div className="product-card">
-                                <img src="#{{ asset('images/product1.jpg') }}" alt="Bàn phím cơ" className="product-image" />
+                                <img src={sample} alt="Bàn phím cơ" className="product-image" />
                                 <div className="product-info">
                                     <h3 className="product-name"><i className="fas fa-keyboard"></i> Bàn phím cơ Gaming RGB</h3>
                                     <p className="product-price">2.990.000đ</p>
@@ -32,7 +33,7 @@ function Home() {
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="product-card">
-                                <img src="{{ asset('images/product2.jpg') }}" alt="Chuột gaming" className="product-image" />
+                                <img src={sample} alt="Chuột gaming" className="product-image" />
                                 <div className="product-info">
                                     <h3 className="product-name"><i className="fas fa-mouse"></i> Chuột Gaming Pro</h3>
                                     <p className="product-price">1.490.000đ</p>
@@ -41,7 +42,7 @@ function Home() {
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="product-card">
-                                <img src="{{ asset('images/product3.jpg') }}" alt="Tai nghe gaming" className="product-image" />
+                                <img src={sample} alt="Tai nghe gaming" className="product-image" />
                                 <div className="product-info">
                                     <h3 className="product-name"><i className="fas fa-headset"></i> Tai nghe Gaming 7.1</h3>
                                     <p className="product-price">3.290.000đ</p>
@@ -50,7 +51,7 @@ function Home() {
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="product-card">
-                                <img src="{{ asset('images/product4.jpg') }}" alt="Ghế gaming" className="product-image" />
+                                <img src={sample} alt="Ghế gaming" className="product-image" />
                                 <div className="product-info">
                                     <h3 className="product-name"><i className="fas fa-chair"></i> Ghế Gaming Pro</h3>
                                     <p className="product-price">4.990.000đ</p>
@@ -67,25 +68,25 @@ function Home() {
                     <div className="row g-4">
                         <div className="col-6 col-lg-3">
                             <div className="category-card">
-                                <img src="{{ asset('images/category1.jpg') }}" alt="Bàn phím" className="category-image" />
+                                <img src="#" alt="Bàn phím" className="category-image" />
                                 <div className="category-name"><i className="fas fa-keyboard"></i> Bàn phím</div>
                             </div>
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="category-card">
-                                <img src="{{ asset('images/category2.jpg') }}" alt="Chuột" className="category-image" />
+                                <img src="#" alt="Chuột" className="category-image" />
                                 <div className="category-name"><i className="fas fa-mouse"></i> Chuột</div>
                             </div>
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="category-card">
-                                <img src="{{ asset('images/category3.jpg') }}" alt="Tai nghe" className="category-image" />
+                                <img src="#" alt="Tai nghe" className="category-image" />
                                 <div className="category-name"><i className="fas fa-headset"></i> Tai nghe</div>
                             </div>
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="category-card">
-                                <img src="{{ asset('images/category4.jpg') }}" alt="Ghế gaming" className="category-image" />
+                                <img src="#" alt="Ghế gaming" className="category-image" />
                                 <div className="category-name"><i className="fas fa-chair"></i> Ghế gaming</div>
                             </div>
                         </div>

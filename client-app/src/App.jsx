@@ -7,7 +7,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
-import Detail from './pages/Detail.jsx';
+import Product from './pages/Product.jsx';
 import Cart from './pages/Cart.jsx';
 import Checkout from './pages/Checkout.jsx';
 
@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="shop" element={<Shop />} />
-          <Route path="detail" element={<Detail />} />
+          <Route path="product" element={<Product />} />
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>
