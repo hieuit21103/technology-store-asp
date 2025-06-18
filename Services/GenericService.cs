@@ -22,21 +22,42 @@ namespace technology_store_asp.Services{
         public virtual async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
         public virtual async Task<T> AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            return entity;
+            try
+            {
+                await _dbSet.AddAsync(entity);
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Không thể thêm.");
+            }
         }
         public virtual async Task<T> UpdateAsync(T entity)
         {
-            _dbSet.Update(entity);
-            await _context.SaveChangesAsync();
-            return entity;
+            try
+            {
+                _dbSet.Update(entity);
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Không thể cập nhật.");
+            }
         }
         public virtual async Task DeleteAsync(int id)
         {
-            var entity = await _dbSet.FindAsync(id);
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var entity = await _dbSet.FindAsync(id);
+                _dbSet.Remove(entity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Không thể xóa.");
+            }
         }
     }
 }

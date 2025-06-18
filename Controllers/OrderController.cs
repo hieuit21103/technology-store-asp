@@ -2,35 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using technology_store_asp.Models;
-using technology_store_asp.Models.DTOs;
-using technology_store_asp.Services;
+using technology_store_asp.Services.Interfaces;
 
 namespace technology_store_asp.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy = "Admin")]
-    public class UserController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private readonly ApplicationUserService _userService;
+        private readonly IGenericService<Order> _orderService;
 
-        public UserController(ApplicationUserService userService)
+        public OrderController(IGenericService<Order> orderService)
         {
-            _userService = userService;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            try
-            {
-                var user = await _userService.GetByIdAsync(id);
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            _orderService = orderService;
         }
 
         [HttpGet("all")]
@@ -38,8 +22,22 @@ namespace technology_store_asp.Controllers
         {
             try
             {
-                var users = await _userService.GetAllAsync();
-                return Ok(users);
+                var orders = await _orderService.GetAllAsync();
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            try
+            {
+                var order = await _orderService.GetByIdAsync(id);
+                return Ok(order);
             }
             catch (Exception ex)
             {
@@ -48,12 +46,12 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add(ApplicationUser entity)
+        public async Task<IActionResult> Add(Order entity)
         {
             try
             {
-                var user = await _userService.AddAsync(entity);
-                return Ok(user);
+                var order = await _orderService.AddAsync(entity);
+                return Ok(order);
             }
             catch (Exception ex)
             {
@@ -62,12 +60,12 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update(ApplicationUser entity)
+        public async Task<IActionResult> Update(Order entity)
         {
             try
             {
-                var user = await _userService.UpdateAsync(entity);
-                return Ok(user);
+                var order = await _orderService.UpdateAsync(entity);
+                return Ok(order);
             }
             catch (Exception ex)
             {
@@ -80,7 +78,7 @@ namespace technology_store_asp.Controllers
         {
             try
             {
-                await _userService.DeleteAsync(id);
+                await _orderService.DeleteAsync(id);
                 return Ok("Deleted successfully");
             }
             catch (Exception ex)
@@ -90,3 +88,4 @@ namespace technology_store_asp.Controllers
         }
     }
 }
+

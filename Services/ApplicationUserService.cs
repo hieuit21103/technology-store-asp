@@ -59,7 +59,8 @@ namespace technology_store_asp.Services{
             var result = await _signInManager.PasswordSignInAsync(entity.Username, entity.Password, isPersistent: false, lockoutOnFailure: false);
             if (!result.Succeeded)
                 throw new Exception("Sai thông tin đăng nhập.");
-            return null;
+            var user = await _userManager.FindByNameAsync(entity.Username);
+            return user;
         }
 
         public async Task<ApplicationUser> LogoutAsync()

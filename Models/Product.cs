@@ -22,8 +22,8 @@ namespace technology_store_asp.Models
         public decimal BasePrice { get; set; }
 
         public bool IsPublished { get; set; } = true;
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         public ICollection<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
         public ICollection<Category> Categories { get; set; } = new List<Category>();

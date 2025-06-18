@@ -31,12 +31,12 @@ namespace technology_store_asp.Controllers
             try
             {
                 var user = await _userService.LoginAsync(dto);
-                if (user != null)
+                if (user == null)
                 {
-                    var token = _jwtService.GenerateToken(user);
-                    return Ok(new { token, user });
+                    return BadRequest("Sai thông tin đăng nhập");
                 }
-                return BadRequest("Sai thông tin đăng nhập");
+                var token = _jwtService.GenerateToken(user);
+                return Ok(new { token, user });
             }
             catch (Exception ex)
             {
@@ -50,12 +50,12 @@ namespace technology_store_asp.Controllers
             try
             {
                 var user = await _userService.RegisterAsync(dto);
-                if (user != null)
+                if (user == null)
                 {
-                    var token = _jwtService.GenerateToken(user);
-                    return Ok(new { token, user });
+                    return BadRequest("Đăng ký thất bại");
                 }
-                return BadRequest("Đăng ký thất bại");
+                var token = _jwtService.GenerateToken(user);
+                return Ok(new { token, user });
             }
             catch (Exception ex)
             {

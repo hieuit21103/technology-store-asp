@@ -46,7 +46,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("add")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Add(Product entity)
         {
             try
@@ -61,7 +61,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("update")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Update(Product entity)
         {
             try
@@ -76,7 +76,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("delete")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             try
