@@ -8,7 +8,6 @@ namespace technology_store_asp.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
 
-        // Không cần DbSet<User> nữa vì đã dùng ApplicationUser từ Identity
         public DbSet<UserAddress> UserAddresses { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Review> Reviews { get; set; }
@@ -22,13 +21,6 @@ namespace technology_store_asp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Nếu có ràng buộc riêng cho ApplicationUser hoặc liên kết với bảng khác, định nghĩa ở đây
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Orders)
-                .WithOne(o => o.User)
-                .HasForeignKey(o => o.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
