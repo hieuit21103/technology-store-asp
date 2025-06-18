@@ -1,92 +1,34 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using technology_store_asp.Models;
-using technology_store_asp.Models.DTOs;
-using technology_store_asp.Services;
+using technology_store_asp.Services.Interfaces;
 
 namespace technology_store_asp.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Authorize(Policy = "Admin")]
-    public class UserController : ControllerBase
+    public class UserController : BaseController<ApplicationUser>
     {
-        private readonly ApplicationUserService _userService;
+        private readonly IGenericService<ApplicationUser> _service;
 
-        public UserController(ApplicationUserService userService)
-        {
-            _userService = userService;
+        public UserController(IGenericService<ApplicationUser> service) : base(service){
+            _service = service;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [Authorize(Policy = "Admin")]
+        public override async Task<IActionResult> Add(ApplicationUser entity)
         {
-            try
-            {
-                var user = await _userService.GetByIdAsync(id);
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return await base.Add(entity);
         }
 
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
+        [Authorize(Policy = "Admin")]
+        public override async Task<IActionResult> Update(ApplicationUser entity)
         {
-            try
-            {
-                var users = await _userService.GetAllAsync();
-                return Ok(users);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return await base.Update(entity);
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> Add(ApplicationUser entity)
+        [Authorize(Policy = "Admin")]
+        public override async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                var user = await _userService.AddAsync(entity);
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost("update")]
-        public async Task<IActionResult> Update(ApplicationUser entity)
-        {
-            try
-            {
-                var user = await _userService.UpdateAsync(entity);
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost("delete")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                await _userService.DeleteAsync(id);
-                return Ok("Deleted successfully");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return await base.Delete(id);
         }
     }
 }
+
