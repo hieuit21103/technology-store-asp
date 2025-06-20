@@ -17,7 +17,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
+        public virtual async Task<IActionResult> GetAll()
         {
             try
             {
@@ -31,7 +31,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpGet("id/{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public virtual async Task<IActionResult> GetById(int id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add(T entity)
+        public virtual async Task<IActionResult> Add(T entity)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> Update(T entity)
+        public virtual async Task<IActionResult> Update(T entity)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace technology_store_asp.Controllers
         }
 
         [HttpPost("delete")]
-        public async Task<IActionResult> Delete(int id)
+        public virtual async Task<IActionResult> Delete(int id)
         {
             try
             {
